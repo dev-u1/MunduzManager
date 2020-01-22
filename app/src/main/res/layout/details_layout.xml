@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/details_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/colorPrimary"
+        android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+        app:contentInsetEnd="0dp"
+        app:contentInsetEndWithActions="0dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetRight="0dp"
+        app:contentInsetStart="0dp"
+        app:contentInsetStartWithNavigation="0dp"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:titleTextColor="@color/white">
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <!-- Category of product -->
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="7dp"
+            android:layout_marginTop="4dp"
+            android:text="@string/category"
+            android:textSize="16sp" />
+
+    <Spinner
+            android:id="@+id/product_category"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginBottom="4dp"
+            android:textSize="16sp" />
+
+
+    <!-- Name of product -->
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="7dp"
+            android:text="@string/product_name"
+            android:textSize="16sp" />
+
+    <EditText
+            android:id="@+id/product_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="7dp"
+            android:layout_marginBottom="4dp"
+            android:inputType="text"
+            android:maxLength="40"
+            android:textSize="16sp" />
+
+
+    <!-- Description of product -->
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="7dp"
+            android:text="@string/product_desc"
+            android:textSize="16sp" />
+
+    <EditText
+            android:id="@+id/product_desc"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginBottom="4dp"
+            android:inputType="textMultiLine"
+            android:maxLength="210"
+            android:maxLines="4"
+            android:textSize="16sp" />
+
+
+    <!-- Cost of product -->
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="7dp"
+            android:text="@string/product_cost"
+            android:textSize="16sp" />
+
+    <EditText
+            android:id="@+id/product_cost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="7dp"
+            android:layout_marginBottom="4dp"
+            android:inputType="numberDecimal"
+            android:maxLength="7"
+            android:textSize="16sp" />
+
+
+    <!-- Visibility of product -->
+    <Switch
+            android:id="@+id/product_visibility"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@string/product_visibility"
+            android:textColor="?attr/textColorAlertDialogListItem"
+            android:textSize="16sp"/>
+
+    <!-- Quantity of product -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Количество продукта"
+            android:layout_alignParentLeft="true"
+            android:textSize="16sp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginBottom="4dp"/>
+
+        <EditText
+            android:id="@+id/product_amount"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
+
+
+
+    <!-- Image of product-->
+    <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="7dp"
+            android:text="@string/product_image"
+            android:textSize="16sp" />
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <ImageButton
+                android:id="@+id/choose_product_image"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:layout_marginLeft="7dp"
+                android:layout_marginBottom="4dp"
+                android:src="@drawable/ic_add_a_photo_gray_24dp" />
+
+        <ImageView
+                android:id="@+id/product_image"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginBottom="4dp"
+                android:background="@color/white"
+                android:clickable="true" />
+    </LinearLayout>
+
+    <!-- Buttons -->
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <Button
+                android:id="@+id/update_product"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_margin="7dp"
+                android:textSize="14sp"
+                android:layout_weight="1"
+                android:text="Обновить"/>
+
+        <Button
+                android:id="@+id/delete_product"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_margin="7dp"
+                android:textSize="14sp"
+                android:layout_weight="1"
+                android:text="Удалить"/>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

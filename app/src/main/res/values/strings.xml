@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">Munduz-Manager</string>
+    <string name="home">Главная</string>
+    <string name="catalog">Каталог</string>
+    <string name="basket">Корзина</string>
+    <string name="more">Еще</string>
+    <string name="news_goods_title">Новинки</string>
+    <string name="contacts_info">Связаться с нами</string>
+    <string name="payment_delivery">Оплата и доставка</string>
+    <string name="lang">Язык</string>
+    <string name="basket_title">Корзина</string>
+    <string name="info_title">Информация</string>
+    <string name="search_hint">подсказка</string>
+    <string name="search">Поиск</string>
+    <string name="loading">Загрузка изображения</string>
+    <string name="loading_success">Картинка добавлена</string>
+    <string name="loading_failed">Ошибка при загрузке картинки</string>
+    <string name="loading_not_completed">Загрузка не завершена</string>
+    <string name="error_read_data">"Error to read data from database"</string>
+    <string name="select_image">Выберите изображение</string>
+    <string name="edit_text_empty"> Заполните все поля </string>
+    <string name="category">Категория</string>
+    <string name="product_name">Название</string>
+    <string name="product_desc">Описание</string>
+    <string name="product_cost">Стоимость</string>
+    <string name="product_visibility">Видимость</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="product_image">Картинка</string>
+    <string name="add_product">Добавить товар</string>
+    <string name="update_product">Обновить товар</string>
+    <string name="remove_product">Удалить товар</string>
+
+    <array name="category">
+        <item>Продукты</item>
+        <item>Посуда</item>
+        <item>Для дома</item>
+        <item>Одежда</item>
+        <item>Книги</item>
+
+    </array>
+</resources>

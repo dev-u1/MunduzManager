@@ -1,0 +1,60 @@
+package com.ulan.munduz.manager.ui.add
+
+import android.net.Uri
+import com.ulan.app.munduz.ui.Product
+import com.ulan.app.munduz.data.models.Picture
+import com.ulan.munduz.manager.data.repository.Repository
+import com.ulan.munduz.manager.data.repository.Storage
+
+class AddPresenterImpl : AddPresenter {
+
+    private var mView: AddView? = null
+    private var mRepository: Repository
+    private var mStorage: Storage
+    private lateinit var mProduct: Product
+    private lateinit var mPicture: Picture
+
+    constructor(repository: Repository, storage: Storage) {
+        this.mRepository = repository
+        this.mStorage = storage
+    }
+
+    override fun attachView(view: AddView) {
+        this.mView = view
+    }
+
+    override fun getPictureUrl(filePath: Uri?): Picture {
+        mPicture = mStorage.insertImage(filePath!!)
+        return mPicture
+    }
+
+    override fun addButtonClicked() {
+        mProduct = mView?.getInputProduct()!!
+        mView?.checkForNull()
+        insert(mProduct)
+        mView?.clearFields()
+    }
+
+    override fun chooseImageButtonClicked() {
+        mView?.chooseImage()
+    }
+
+    override fun setToolbar() {
+        mView!!.initToolbar("Добавить Товар")
+    }
+
+    override fun initCategory() {
+        val categories = mRepository.getCategories()
+        mView?.setCategories(categories)
+    }
+
+    override fun insert(product: Product) {
+        mRepository.insertProduct(product)
+        mView?.clearFields()
+    }
+
+    override fun detachView() {
+        this.mView = null
+    }
+
+}
