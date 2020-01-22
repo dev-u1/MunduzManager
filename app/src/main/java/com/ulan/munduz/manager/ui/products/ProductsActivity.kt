@@ -50,7 +50,7 @@ class ProductsActivity : AppCompatActivity(),
         }
     }
 
-    override fun showProducts(products: ArrayList<Product>) {
+    override fun showProducts(products: git) {
         mProducts = products
         val layoutManager = LinearLayoutManager(this)
         products_recycler_view.layoutManager = layoutManager
