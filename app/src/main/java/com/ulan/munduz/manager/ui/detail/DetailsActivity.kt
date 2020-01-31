@@ -1,6 +1,7 @@
 package com.ulan.munduz.manager.ui.detail
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
@@ -15,6 +16,7 @@ import com.ulan.app.munduz.helpers.Constants.Companion.PRODUCTS_DATA
 import com.ulan.app.munduz.helpers.showEditTextEmpty
 import com.ulan.app.munduz.helpers.showEmptyDrawable
 import com.ulan.app.munduz.helpers.showProductUpdated
+import com.ulan.app.munduz.helpers.showSuccessDeleted
 import com.ulan.app.munduz.ui.Product
 import com.ulan.munduz.manager.R
 import com.ulan.munduz.manager.data.repository.RepositoryImpl
@@ -58,6 +60,10 @@ class DetailsActivity : AppCompatActivity(), DetailsView {
             showProductUpdated(this)
         }
 
+        delete_product.setOnClickListener {
+            mPresenter.setDialog()
+        }
+
         choose_product_image.setOnClickListener {
             mPresenter.chooseImageButtonClicked()
         }
@@ -65,12 +71,29 @@ class DetailsActivity : AppCompatActivity(), DetailsView {
 
     override fun initToolbar(title: String) {
         setSupportActionBar(details_toolbar)
-        supportActionBar?.title = "Details"
+        supportActionBar?.title = "О Продукте"
         details_toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
         details_toolbar.setNavigationOnClickListener {
             finish()
         }
 
+    }
+
+    override fun showDialog(){
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Удаление продукта")
+        builder.setMessage("Вы хотите удалить продукт?")
+        builder.setPositiveButton("Да"){ dialogInterface, i ->
+            mPresenter.deleteButtonClicked(mProduct)
+            showSuccessDeleted(this)
+            dialogInterface.cancel()
+            finish()
+        }
+        builder.setNegativeButton("Нет"){ dialogInterface, i ->
+            dialogInterface.cancel()
+        }
+        val dialog = builder.create()
+        dialog.show()
     }
 
     override fun setCategories(categories: MutableList<String>) {

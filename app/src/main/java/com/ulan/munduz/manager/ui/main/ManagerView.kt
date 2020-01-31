@@ -4,6 +4,7 @@ interface ManagerView {
 
     fun initToolbar()
     fun showAddActivity()
+    fun showAddSliderImageActivity()
     fun showManageActivity()
     fun showSendMessageFragment()
     fun showOrderActivity()

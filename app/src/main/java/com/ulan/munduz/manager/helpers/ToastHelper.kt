@@ -32,6 +32,14 @@ fun showSuccessProductAdded(context: Context){
     ).show()
 }
 
+fun showSuccessDeleted(context: Context){
+    Toast.makeText(
+        context,
+        "Успешно удален",
+        Toast.LENGTH_LONG
+    ).show()
+}
+
 fun showEmptyDrawable(context: Context) {
     Toast.makeText(
         context,
@@ -75,7 +83,7 @@ fun showErrorReadFromDatabase(context: Context){
 fun showProductUpdated(context: Context){
     Toast.makeText(
         context,
-        "Updated",
+        "Обновлено",
         Toast.LENGTH_LONG
     ).show()
 }

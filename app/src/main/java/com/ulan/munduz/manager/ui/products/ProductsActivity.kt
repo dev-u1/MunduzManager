@@ -9,6 +9,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ulan.app.munduz.helpers.Constants.Companion.PRODUCTS_DATA
+import com.ulan.app.munduz.helpers.showEmptyFields
 import com.ulan.app.munduz.ui.Product
 import com.ulan.munduz.manager.R
 import com.ulan.munduz.manager.adapter.ProductAdapter
@@ -25,8 +26,8 @@ class ProductsActivity : AppCompatActivity(),
     private lateinit var mPresenter: ProductsPresenter
     private lateinit var mRepository: Repository
     private lateinit var mProducts: MutableList<Product>
-    private lateinit var mAdapter: ProductAdapter
     private lateinit var searchView : SearchView
+    private var mAdapter: ProductAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,7 +64,7 @@ class ProductsActivity : AppCompatActivity(),
     }
 
     override fun showNoProducts(message: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        showEmptyFields(this)
     }
 
     override fun onItemClick(product: Product?) {
@@ -82,12 +83,12 @@ class ProductsActivity : AppCompatActivity(),
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
-        mAdapter.filter.filter(query)
+        mAdapter!!.filter.filter(query)
         return false
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
-        mAdapter.filter.filter(newText)
+        mAdapter!!.filter.filter(newText)
         return true
     }
 
@@ -99,4 +100,10 @@ class ProductsActivity : AppCompatActivity(),
         return true
     }
 
+    override fun onResume() {
+        super.onResume()
+        if(mAdapter != null){
+            mAdapter!!.notifyDataSetChanged()
+        }
+    }
 }

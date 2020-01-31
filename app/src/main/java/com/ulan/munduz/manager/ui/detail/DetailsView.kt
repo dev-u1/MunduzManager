@@ -8,6 +8,7 @@ interface DetailsView {
     fun setCategories(categories: MutableList<String>)
     fun setProduct(product: Product?)
     fun getInputProduct():Product
+    fun showDialog()
     fun chooseImage()
     fun checkForNull()
 }

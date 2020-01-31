@@ -31,7 +31,7 @@ class ProductsPresenterImpl :
     }
 
     override fun setToolbarTitle() {
-        val title = "Products"
+        val title = "Список"
         mView?.setToolbar(title)
     }
 

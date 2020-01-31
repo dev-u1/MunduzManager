@@ -3,12 +3,12 @@ package com.ulan.munduz.manager.ui.main
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import com.ulan.munduz.manager.R
 import com.ulan.munduz.manager.ui.add.AddProductActivity
 import com.ulan.munduz.manager.ui.message.SendMessageFragment
 import com.ulan.munduz.manager.ui.orders.OrdersActivity
 import com.ulan.munduz.manager.ui.products.ProductsActivity
+import com.ulan.munduz.manager.ui.slider.AddSliderActivity
 import kotlinx.android.synthetic.main.main_activity.*
 
 class MainActivity: AppCompatActivity(), ManagerView {
@@ -32,23 +32,31 @@ class MainActivity: AppCompatActivity(), ManagerView {
             mPresenter.callAddActivity()
         }
 
+        add_slider_image.setOnClickListener{
+            mPresenter.callAddSliderImageActivity()
+        }
+
         call_orders_products.setOnClickListener{
             mPresenter.callOrderActivity()
         }
     }
 
     override fun initToolbar() {
-        val toolbar = findViewById<Toolbar>(R.id.manage_toolbar)
-        setSupportActionBar(toolbar)
-        toolbar.title = "Менеджер"
-        toolbar?.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
-        toolbar?.setNavigationOnClickListener {
+        setSupportActionBar(main_toolbar)
+        supportActionBar?.title = "Менеджер"
+        main_toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
+        main_toolbar.setNavigationOnClickListener {
             finish()
         }
     }
 
     override fun showAddActivity() {
         val intent = Intent(this, AddProductActivity::class.java)
+        startActivity(intent)
+    }
+
+    override fun showAddSliderImageActivity() {
+        val intent = Intent(this, AddSliderActivity::class.java)
         startActivity(intent)
     }
 

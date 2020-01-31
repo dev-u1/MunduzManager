@@ -1,63 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
-            android:id="@+id/manage_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:minHeight="?attr/actionBarSize"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
-            android:background="@color/colorPrimary"
-            app:titleTextColor="@color/white"
+        android:id="@+id/main_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+        app:contentInsetEnd="0dp"
+        app:contentInsetEndWithActions="0dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetRight="0dp"
+        app:contentInsetStart="0dp"
+        app:contentInsetStartWithNavigation="0dp"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:title="Менеджер"
+        app:titleTextColor="@color/white"></androidx.appcompat.widget.Toolbar>
 
-            app:contentInsetLeft="0dp"
-            app:contentInsetStart="0dp"
-            app:contentInsetStartWithNavigation="0dp"
-            app:contentInsetEndWithActions="0dp"
-            app:contentInsetEnd="0dp"
-            app:contentInsetRight="0dp">
-    </androidx.appcompat.widget.Toolbar>
-
-
-    <Button
-            android:id="@+id/call_add_product"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Добавить товар"
-            android:layout_margin="12dp"
-            android:textSize="14sp"
-            android:background="?android:selectableItemBackground"/>
 
     <Button
-            android:id="@+id/call_manage_product"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Управление товарами"
-            android:layout_margin="12dp"
-            android:textSize="14sp"
-            android:background="?android:selectableItemBackground"/>
+        android:id="@+id/call_add_product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:background="?android:selectableItemBackground"
+        android:text="Добавить товар"
+        android:textSize="14sp" />
 
     <Button
-            android:id="@+id/call_orders_products"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Заказы товаров"
-            android:layout_margin="12dp"
-            android:textSize="14sp"
-            android:background="?android:selectableItemBackground"/>
+        android:id="@+id/add_slider_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:background="?android:selectableItemBackground"
+        android:text="Добавить фото для слайдера"
+        android:textSize="14sp" />
 
     <Button
-            android:id="@+id/call_message_fragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Написать разработчику"
-            android:layout_margin="12dp"
-            android:textSize="14sp"
-            android:background="?android:selectableItemBackground"/>
+        android:id="@+id/call_manage_product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:background="?android:selectableItemBackground"
+        android:text="Управление товарами"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/call_orders_products"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:background="?android:selectableItemBackground"
+        android:text="Заказы товаров"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/call_message_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:background="?android:selectableItemBackground"
+        android:text="Написать разработчику"
+        android:textSize="14sp" />
 
 </LinearLayout>

@@ -11,7 +11,6 @@ class DetailsPresenterImpl : DetailsPresenter{
     private var mView: DetailsView? = null
     private var mRepository: Repository
     private var mStorage: Storage
-    private lateinit var mProduct: Product
 
     constructor(repository: Repository, storage: Storage) {
         this.mRepository = repository
@@ -50,17 +49,21 @@ class DetailsPresenterImpl : DetailsPresenter{
         mView?.setProduct(product)
     }
 
+    override fun setDialog() {
+        mView?.showDialog()
+    }
+
     override fun getPictureUrl(filePath: Uri?): Picture {
         return mStorage.insertImage(filePath!!)
     }
 
     override fun updateButtonClicked() {
-        mProduct = mView!!.getInputProduct()
-        mRepository.updateProduct(mProduct)
+        val product = mView!!.getInputProduct()
+        mRepository.updateProduct(product)
     }
 
-    override fun deleteButtonClicked() {
-        mRepository.removeProduct(mProduct.id)
+    override fun deleteButtonClicked(product: Product) {
+        mRepository.removeProduct(product.id)
     }
 
     override fun chooseImageButtonClicked() {

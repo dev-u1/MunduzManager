@@ -11,9 +11,10 @@ interface DetailsPresenter {
     fun initCategory()
     fun setToolbar()
     fun showProduct(product: Product)
+    fun setDialog()
     fun getPictureUrl(filePath: Uri?): Picture
     fun updateButtonClicked()
-    fun deleteButtonClicked()
+    fun deleteButtonClicked(product: Product)
     fun chooseImageButtonClicked()
     fun findCategoryPosition(category: String): Int
 

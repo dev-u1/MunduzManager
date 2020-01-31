@@ -19,7 +19,7 @@ class OrdersPresenterImpl: OrdersPresenter{
     }
 
     override fun showToolbar() {
-        mView?.initToolbar("Category")
+        mView?.initToolbar("Заказы")
     }
 
     override fun loadCategories() {

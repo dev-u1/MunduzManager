@@ -29,13 +29,14 @@
             android:layout_marginLeft="7dp"
             android:layout_marginTop="4dp"
             android:text="@string/category"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
     <Spinner
             android:id="@+id/product_category"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_marginLeft="7dp"
+            android:layout_marginRight="7dp"
             android:layout_marginBottom="4dp"
             android:textSize="16sp" />
 
@@ -46,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="7dp"
             android:text="@string/product_name"
-            android:textSize="16sp" />
+            android:textSize="15sp" />
 
     <EditText
             android:id="@+id/product_name"
@@ -66,16 +67,16 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="7dp"
             android:text="@string/product_desc"
-            android:textSize="16sp" />
+            android:textSize="15sp" />
 
     <EditText
             android:id="@+id/product_desc"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="90dp"
             android:layout_marginLeft="7dp"
             android:layout_marginBottom="4dp"
             android:inputType="textMultiLine"
-            android:maxLength="210"
+            android:maxLength="220"
             android:maxLines="4"
             android:textSize="16sp" />
 
@@ -86,13 +87,14 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="7dp"
             android:text="@string/product_cost"
-            android:textSize="16sp" />
+            android:textSize="15sp" />
 
     <EditText
             android:id="@+id/product_cost"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="7dp"
+            android:layout_marginRight="7dp"
             android:layout_marginBottom="4dp"
             android:inputType="numberDecimal"
             android:maxLength="7"
@@ -106,8 +108,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:text="@string/product_visibility"
-            android:textColor="?attr/textColorAlertDialogListItem"
-            android:textSize="16sp"/>
+            android:textSize="15sp"/>
 
     <!-- Quantity of product -->
     <RelativeLayout
@@ -120,14 +121,15 @@
             android:layout_height="wrap_content"
             android:text="Количество продукта"
             android:layout_alignParentLeft="true"
-            android:textSize="16sp"
+            android:textSize="15sp"
             android:layout_marginLeft="7dp"
             android:layout_marginBottom="4dp"/>
 
         <EditText
             android:id="@+id/product_amount"
-            android:layout_width="60dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
+            android:maxLength="10"
             android:layout_alignParentRight="true"/>
 
     </RelativeLayout>
@@ -140,7 +142,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="7dp"
             android:text="@string/product_image"
-            android:textSize="16sp" />
+            android:textSize="15sp" />
 
     <LinearLayout
             android:layout_width="match_parent"
@@ -174,18 +176,18 @@
         <Button
                 android:id="@+id/update_product"
                 android:layout_width="wrap_content"
-                android:layout_height="45dp"
+                android:layout_height="40dp"
                 android:layout_margin="7dp"
-                android:textSize="14sp"
+                android:textSize="13sp"
                 android:layout_weight="1"
                 android:text="Обновить"/>
 
         <Button
                 android:id="@+id/delete_product"
                 android:layout_width="wrap_content"
-                android:layout_height="45dp"
+                android:layout_height="40dp"
                 android:layout_margin="7dp"
-                android:textSize="14sp"
+                android:textSize="13sp"
                 android:layout_weight="1"
                 android:text="Удалить"/>
 

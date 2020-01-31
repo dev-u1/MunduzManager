@@ -7,11 +7,13 @@ import com.ulan.munduz.manager.R
 import com.ulan.app.munduz.helpers.Constants.Companion.ORDERS_DATA
 import com.ulan.app.munduz.ui.Product
 import com.ulan.app.munduz.helpers.Constants.Companion.PRODUCTS_DATA
+import com.ulan.app.munduz.helpers.Constants.Companion.SLIDER_IMAGE_DATA
 import com.ulan.app.munduz.helpers.Constants.Companion.TAG
 import com.ulan.app.munduz.helpers.showErrorReadFromDatabase
 import com.ulan.munduz.manager.adapter.listeners.OrdersListCallback
 import com.ulan.munduz.manager.adapter.listeners.ProductsListCallback
 import com.ulan.munduz.manager.data.model.Order
+import com.ulan.munduz.manager.data.model.SliderImage
 
 class RepositoryImpl : Repository {
 
@@ -82,5 +84,26 @@ class RepositoryImpl : Repository {
     override fun getCategories(): MutableList<String> {
         val result = context.resources.getStringArray(R.array.category)
         return result.toMutableList()
+    }
+
+    override fun insertSliderImage(name: String, sliderImage: SliderImage) {
+        sliderImage.name = name
+        ref.child(SLIDER_IMAGE_DATA).child(name).setValue(sliderImage)
+    }
+
+    override fun getSliderImage(queryName: String): SliderImage {
+        var sliderImage = SliderImage()
+        val query = ref.child(SLIDER_IMAGE_DATA).orderByChild("name").equalTo(queryName)
+        query.addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onCancelled(p0: DatabaseError) {
+                TODO()
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                sliderImage = p0.getValue(SliderImage::class.java)!!
+            }
+
+        })
+        return sliderImage
     }
 }

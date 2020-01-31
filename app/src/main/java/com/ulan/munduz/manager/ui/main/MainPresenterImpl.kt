@@ -16,6 +16,10 @@ class MainPresenterImpl: MainPresenter {
         mView?.showAddActivity()
     }
 
+    override fun callAddSliderImageActivity() {
+        mView?.showAddSliderImageActivity()
+    }
+
     override fun callProductActivity() {
         mView?.showManageActivity()
     }

@@ -40,7 +40,7 @@ class AddPresenterImpl : AddPresenter {
     }
 
     override fun setToolbar() {
-        mView!!.initToolbar("Добавить Товар")
+        mView!!.initToolbar("Добавить")
     }
 
     override fun initCategory() {

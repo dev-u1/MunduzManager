@@ -26,6 +26,7 @@
         <activity android:name="com.ulan.munduz.manager.ui.add.AddProductActivity"/>
         <activity android:name=".ui.orders.OrdersActivity"/>
         <activity android:name=".ui.detail.DetailsActivity"/>
+        <activity android:name=".ui.slider.AddSliderActivity"/>
     </application>
 
 </manifest>
