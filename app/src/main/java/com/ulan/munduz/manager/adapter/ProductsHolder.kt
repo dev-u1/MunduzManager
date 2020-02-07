@@ -5,9 +5,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ulan.app.munduz.ui.Product
 import com.ulan.munduz.manager.R
-import com.ulan.munduz.manager.adapter.listeners.OnItemClickListener
+import com.ulan.munduz.manager.listeners.OnItemClickListener
 
-class ProductHolder(itemView: View)  : RecyclerView.ViewHolder(itemView) {
+class ProductsHolder(itemView: View)  : RecyclerView.ViewHolder(itemView) {
 
     val item_name = itemView.findViewById<TextView>(R.id.item_name)
     val item_category = itemView.findViewById<TextView>(R.id.item_category)

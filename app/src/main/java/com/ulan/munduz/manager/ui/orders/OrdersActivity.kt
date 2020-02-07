@@ -6,33 +6,34 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ulan.munduz.manager.R
 import com.ulan.munduz.manager.adapter.OrdersAdapter
-import com.ulan.munduz.manager.data.model.Order
+import com.ulan.munduz.manager.data.models.Order
 import com.ulan.munduz.manager.data.repository.Repository
 import com.ulan.munduz.manager.data.repository.RepositoryImpl
+import com.ulan.munduz.manager.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.orders_layout.*
+import javax.inject.Inject
 
-class OrdersActivity : AppCompatActivity(), OrdersView {
+class OrdersActivity : BaseActivity(), OrdersView {
 
-    private lateinit var adapter: OrdersAdapter
-    private lateinit var mPresenter: OrdersPresenter
-    private lateinit var mRepository: Repository
+    @Inject
+    lateinit var adapter: OrdersAdapter
+
+    @Inject
+    lateinit var mPresenter: OrdersPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.orders_layout)
-        
-        mRepository = RepositoryImpl(this)
-        mPresenter = OrdersPresenterImpl(this, mRepository)
+
         mPresenter.showToolbar()
         mPresenter.loadCategories()
-      
     }
 
     override fun initToolbar(title: String) {
-        setSupportActionBar(category_toolbar)
+        setSupportActionBar(orders_toolbar)
         supportActionBar?.title = title
-        category_toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
-        category_toolbar.setNavigationOnClickListener {
+        orders_toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
+        orders_toolbar.setNavigationOnClickListener {
             finish()
         }
     }
@@ -48,7 +49,7 @@ class OrdersActivity : AppCompatActivity(), OrdersView {
     override fun showOrders(categories: MutableList<Order>) {
         val layoutManager = LinearLayoutManager(this)
         category_recycler_view.layoutManager = layoutManager
-        adapter = OrdersAdapter(this, categories)
+        adapter.setCategories(categories)
         category_recycler_view.adapter = adapter
     }
 

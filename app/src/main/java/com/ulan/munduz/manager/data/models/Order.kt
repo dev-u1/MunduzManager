@@ -1,4 +1,4 @@
-package com.ulan.munduz.manager.data.model
+package com.ulan.munduz.manager.data.models
 
 data class Order(
     var id : String = "",

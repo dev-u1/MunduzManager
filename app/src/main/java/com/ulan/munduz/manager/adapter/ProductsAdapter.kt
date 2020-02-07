@@ -2,38 +2,42 @@ package com.ulan.munduz.manager.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ulan.app.munduz.helpers.convertLongToTime
 import com.ulan.app.munduz.ui.Product
 import com.ulan.munduz.manager.R
-import com.ulan.munduz.manager.adapter.listeners.OnItemClickListener
+import com.ulan.munduz.manager.listeners.OnItemClickListener
+import javax.inject.Inject
 
-class ProductAdapter: RecyclerView.Adapter<ProductHolder>, Filterable {
+class ProductsAdapter: RecyclerView.Adapter<ProductsHolder>, Filterable {
 
-    private var products: ArrayList<Product>
-    private var filteredProducts: ArrayList<Product>
     private var context: Context?
     private val onItemClickListener: OnItemClickListener?
 
-    constructor(context: Context, items: ArrayList<Product>, listener: OnItemClickListener){
+    private lateinit var products: ArrayList<Product>
+    private lateinit var filteredProducts: ArrayList<Product>
+
+    @Inject
+    constructor(context: Context, listener: OnItemClickListener){
         this.context = context
-        this.products = items
-        this.filteredProducts = items
         this.onItemClickListener = listener
     }
+
+    fun setProducts(products: ArrayList<Product>){
+        this.products = products
+        this.filteredProducts = products
+    }
     
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : ProductHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : ProductsHolder {
         var inflater: LayoutInflater = context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         var view = inflater.inflate(R.layout.products_items, parent, false)
-        return ProductHolder(view)
+        return ProductsHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ProductHolder, position: Int) {
+    override fun onBindViewHolder(holder: ProductsHolder, position: Int) {
         var product: Product? = filteredProducts.get(position)
         holder.bind(product, onItemClickListener)
         holder.item_name.text = product!!.name

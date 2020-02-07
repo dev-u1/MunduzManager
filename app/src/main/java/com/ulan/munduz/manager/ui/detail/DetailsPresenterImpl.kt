@@ -5,6 +5,7 @@ import com.ulan.app.munduz.ui.Product
 import com.ulan.app.munduz.data.models.Picture
 import com.ulan.munduz.manager.data.repository.Repository
 import com.ulan.munduz.manager.data.repository.Storage
+import javax.inject.Inject
 
 class DetailsPresenterImpl : DetailsPresenter{
 
@@ -12,17 +13,11 @@ class DetailsPresenterImpl : DetailsPresenter{
     private var mRepository: Repository
     private var mStorage: Storage
 
-    constructor(repository: Repository, storage: Storage) {
+    @Inject
+    constructor(view: DetailsView, repository: Repository, storage: Storage) {
+        this.mView = view
         this.mRepository = repository
         this.mStorage = storage
-    }
-
-    override fun attachView(view: DetailsView) {
-        mView = view
-    }
-
-    override fun detachView() {
-        mView = null
     }
 
     override fun initCategory() {
@@ -68,5 +63,9 @@ class DetailsPresenterImpl : DetailsPresenter{
 
     override fun chooseImageButtonClicked() {
         mView?.chooseImage()
+    }
+
+    override fun detachView() {
+        mView = null
     }
 }

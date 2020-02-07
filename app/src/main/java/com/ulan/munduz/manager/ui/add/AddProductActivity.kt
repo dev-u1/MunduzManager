@@ -16,26 +16,25 @@ import com.ulan.app.munduz.helpers.showSuccessProductAdded
 import com.ulan.munduz.manager.R
 import com.ulan.munduz.manager.data.repository.RepositoryImpl
 import com.ulan.munduz.manager.data.repository.StorageImpl
+import com.ulan.munduz.manager.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.add_layout.*
 import java.io.IOException
+import javax.inject.Inject
 import android.widget.ArrayAdapter as ArrayAdapter1
 
-class AddProductActivity : AppCompatActivity(),
+class AddProductActivity : BaseActivity(),
     AddView {
 
-    private lateinit var mPresenter: AddPresenter
     private var mFilePath: Uri? = null
     private var mPicture: Picture = Picture()
+
+    @Inject
+    lateinit var mPresenter: AddPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.add_layout)
 
-        val repository = RepositoryImpl(this@AddProductActivity)
-        val storage = StorageImpl(this)
-        mPresenter = AddPresenterImpl(repository, storage)
-
-        mPresenter.attachView(this)
         mPresenter.setToolbar()
         mPresenter.initCategory()
 

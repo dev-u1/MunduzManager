@@ -5,6 +5,7 @@ import com.ulan.app.munduz.ui.Product
 import com.ulan.app.munduz.data.models.Picture
 import com.ulan.munduz.manager.data.repository.Repository
 import com.ulan.munduz.manager.data.repository.Storage
+import javax.inject.Inject
 
 class AddPresenterImpl : AddPresenter {
 
@@ -14,13 +15,25 @@ class AddPresenterImpl : AddPresenter {
     private lateinit var mProduct: Product
     private lateinit var mPicture: Picture
 
-    constructor(repository: Repository, storage: Storage) {
+    @Inject
+    constructor(view: AddView, repository: Repository, storage: Storage) {
+        this.mView = view
         this.mRepository = repository
         this.mStorage = storage
     }
 
-    override fun attachView(view: AddView) {
-        this.mView = view
+    override fun setToolbar() {
+        mView!!.initToolbar("Добавить")
+    }
+
+    override fun initCategory() {
+        val categories = mRepository.getCategories()
+        mView?.setCategories(categories)
+    }
+
+    override fun insert(product: Product) {
+        mRepository.insertProduct(product)
+        mView?.clearFields()
     }
 
     override fun getPictureUrl(filePath: Uri?): Picture {
@@ -37,20 +50,6 @@ class AddPresenterImpl : AddPresenter {
 
     override fun chooseImageButtonClicked() {
         mView?.chooseImage()
-    }
-
-    override fun setToolbar() {
-        mView!!.initToolbar("Добавить")
-    }
-
-    override fun initCategory() {
-        val categories = mRepository.getCategories()
-        mView?.setCategories(categories)
-    }
-
-    override fun insert(product: Product) {
-        mRepository.insertProduct(product)
-        mView?.clearFields()
     }
 
     override fun detachView() {

@@ -21,6 +21,8 @@ import com.ulan.app.munduz.ui.Product
 import com.ulan.munduz.manager.R
 import com.ulan.munduz.manager.data.repository.RepositoryImpl
 import com.ulan.munduz.manager.data.repository.StorageImpl
+import com.ulan.munduz.manager.ui.base.BaseActivity
+import com.ulan.munduz.manager.ui.products.ProductsActivity
 import kotlinx.android.synthetic.main.add_layout.choose_product_image
 import kotlinx.android.synthetic.main.add_layout.product_amount
 import kotlinx.android.synthetic.main.add_layout.product_category
@@ -30,23 +32,22 @@ import kotlinx.android.synthetic.main.add_layout.product_image
 import kotlinx.android.synthetic.main.add_layout.product_name
 import kotlinx.android.synthetic.main.details_layout.*
 import java.io.IOException
+import javax.inject.Inject
 
-class DetailsActivity : AppCompatActivity(), DetailsView {
+class DetailsActivity : BaseActivity(), DetailsView {
 
-    private lateinit var mPresenter: DetailsPresenter
-    private lateinit var mProduct: Product
     private var filePath: Uri? = null
+    private lateinit var mProduct: Product
     private var newPicture: Picture = Picture()
     private var oldPicture: Picture = Picture()
+
+    @Inject
+    lateinit var mPresenter: DetailsPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.details_layout)
-        val repository = RepositoryImpl(this)
-        val storage = StorageImpl(this)
-        mPresenter = DetailsPresenterImpl(repository, storage)
 
-        mPresenter.attachView(this)
         mPresenter.setToolbar()
         mPresenter.initCategory()
 
@@ -87,7 +88,8 @@ class DetailsActivity : AppCompatActivity(), DetailsView {
             mPresenter.deleteButtonClicked(mProduct)
             showSuccessDeleted(this)
             dialogInterface.cancel()
-            finish()
+            val intent = Intent(this, ProductsActivity::class.java)
+            startActivity(intent)
         }
         builder.setNegativeButton("Нет"){ dialogInterface, i ->
             dialogInterface.cancel()

@@ -10,10 +10,11 @@ import com.ulan.app.munduz.helpers.Constants.Companion.PRODUCTS_DATA
 import com.ulan.app.munduz.helpers.Constants.Companion.SLIDER_IMAGE_DATA
 import com.ulan.app.munduz.helpers.Constants.Companion.TAG
 import com.ulan.app.munduz.helpers.showErrorReadFromDatabase
-import com.ulan.munduz.manager.adapter.listeners.OrdersListCallback
-import com.ulan.munduz.manager.adapter.listeners.ProductsListCallback
-import com.ulan.munduz.manager.data.model.Order
-import com.ulan.munduz.manager.data.model.SliderImage
+import com.ulan.munduz.manager.listeners.OrdersListCallback
+import com.ulan.munduz.manager.listeners.ProductsListCallback
+import com.ulan.munduz.manager.data.models.Order
+import com.ulan.munduz.manager.data.models.SliderImage
+import javax.inject.Inject
 
 class RepositoryImpl : Repository {
 
@@ -21,6 +22,7 @@ class RepositoryImpl : Repository {
     private val ref: DatabaseReference
     private val context: Context
 
+    @Inject
     constructor(context: Context) {
         this.context = context
         database = FirebaseDatabase.getInstance()

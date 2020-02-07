@@ -6,7 +6,6 @@ import com.ulan.app.munduz.data.models.Picture
 
 interface DetailsPresenter {
 
-    fun attachView(view: DetailsView)
     fun detachView()
     fun initCategory()
     fun setToolbar()

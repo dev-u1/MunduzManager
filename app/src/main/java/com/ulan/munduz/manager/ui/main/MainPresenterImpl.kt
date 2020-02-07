@@ -1,10 +1,13 @@
 package com.ulan.munduz.manager.ui.main
 
+import javax.inject.Inject
+
 class MainPresenterImpl: MainPresenter {
 
-    private var mView: ManagerView? = null
+    private var mView: MainView? = null
 
-    constructor(mView: ManagerView?) {
+    @Inject
+    constructor(mView: MainView?) {
         this.mView = mView
     }
 

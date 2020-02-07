@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,32 +11,30 @@ import com.ulan.app.munduz.helpers.Constants.Companion.PRODUCTS_DATA
 import com.ulan.app.munduz.helpers.showEmptyFields
 import com.ulan.app.munduz.ui.Product
 import com.ulan.munduz.manager.R
-import com.ulan.munduz.manager.adapter.ProductAdapter
-import com.ulan.munduz.manager.adapter.listeners.OnItemClickListener
-import com.ulan.munduz.manager.data.repository.Repository
-import com.ulan.munduz.manager.data.repository.RepositoryImpl
+import com.ulan.munduz.manager.adapter.ProductsAdapter
+import com.ulan.munduz.manager.listeners.OnItemClickListener
+import com.ulan.munduz.manager.ui.base.BaseActivity
 import com.ulan.munduz.manager.ui.detail.DetailsActivity
 import kotlinx.android.synthetic.main.products_activity.*
+import javax.inject.Inject
 
-class ProductsActivity : AppCompatActivity(),
+class ProductsActivity : BaseActivity(),
     OnItemClickListener, SearchView.OnQueryTextListener, MenuItem.OnActionExpandListener,
     ProductsView {
 
-    private lateinit var mPresenter: ProductsPresenter
-    private lateinit var mRepository: Repository
     private lateinit var mProducts: MutableList<Product>
     private lateinit var searchView : SearchView
-    private var mAdapter: ProductAdapter? = null
+
+    @Inject
+    lateinit var mPresenter: ProductsPresenter
+
+    @Inject
+    lateinit var mAdapter: ProductsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.products_activity)
-        mRepository = RepositoryImpl(this)
-        mPresenter =
-            ProductsPresenterImpl(
-                mRepository
-            )
-        mPresenter.attachView(this)
+
         mPresenter.loadProducts()
         mPresenter.setToolbarTitle()
     }
@@ -56,10 +53,7 @@ class ProductsActivity : AppCompatActivity(),
         val layoutManager = LinearLayoutManager(this)
         products_recycler_view.layoutManager = layoutManager
         products_recycler_view.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
-        mAdapter = ProductAdapter(
-            this, products,
-            this@ProductsActivity
-        )
+        mAdapter?.setProducts(products)
         products_recycler_view.adapter = mAdapter
     }
 
@@ -106,4 +100,5 @@ class ProductsActivity : AppCompatActivity(),
             mAdapter!!.notifyDataSetChanged()
         }
     }
+
 }

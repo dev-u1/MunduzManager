@@ -12,17 +12,20 @@ class SendEmailHelper : AsyncTask<Void, Void, Void>{
     private val context: Context
     private lateinit var session: Session
 
-    private var email: String
-    private var subject: String
-    private var message: String
-    private var time: String
+    private lateinit var email: String
+    private lateinit var subject: String
+    private lateinit var message: String
+    private lateinit var time: String
 
-    constructor(context: Context, email: String, subject: String, message: String, time: String) {
+    constructor(context: Context) {
         this.context = context
-        this.email = email
-        this.subject = subject
-        this.message = message
-        this.time = time
+    }
+
+    fun setMessage(message: com.ulan.app.munduz.data.models.Message){
+        this.email = message.email
+        this.subject = message.subject
+        this.message = message.body
+        this.time = message.time
     }
 
     override fun onPostExecute(result: Void?) {

@@ -1,4 +1,4 @@
-package com.ulan.munduz.manager.adapter.listeners
+package com.ulan.munduz.manager.listeners
 
 import com.ulan.app.munduz.ui.Product
 

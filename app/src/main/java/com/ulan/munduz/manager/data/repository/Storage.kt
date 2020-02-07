@@ -2,7 +2,7 @@ package com.ulan.munduz.manager.data.repository
 
 import android.net.Uri
 import com.ulan.app.munduz.data.models.Picture
-import com.ulan.munduz.manager.data.model.SliderImage
+import com.ulan.munduz.manager.data.models.SliderImage
 
 interface Storage {
 

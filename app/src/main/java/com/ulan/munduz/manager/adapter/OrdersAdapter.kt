@@ -8,15 +8,18 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ulan.app.munduz.helpers.convertLongToTime
 import com.ulan.munduz.manager.R
-import com.ulan.munduz.manager.data.model.Order
+import com.ulan.munduz.manager.data.models.Order
 
 class OrdersAdapter : RecyclerView.Adapter<OrdersAdapter.CategoryViewHolder> {
 
     private var context: Context
-    private var orders: MutableList<Order>
+    private lateinit var orders: MutableList<Order>
 
-    constructor(context: Context, categories: MutableList<Order>) : super() {
+    constructor(context: Context) : super() {
         this.context = context
+    }
+
+    fun setCategories(categories: MutableList<Order>){
         this.orders = categories
     }
 

@@ -10,21 +10,24 @@ import com.ulan.app.munduz.helpers.convertLongToTime
 import com.ulan.app.munduz.helpers.showEditTextEmpty
 import com.ulan.app.munduz.data.models.Message
 import com.ulan.munduz.manager.R
+import com.ulan.munduz.manager.ui.base.BaseDialogFragment
 import kotlinx.android.synthetic.main.message_layout.*
+import javax.inject.Inject
 
-class SendMessageFragment : DialogFragment(), SendMessageView{
+class SendMessageFragment : BaseDialogFragment(), SendMessageView{
 
-    private lateinit var sendMail: SendEmailHelper
-    private lateinit var mPresenter: SendMessagePresenter
+    @Inject
+    lateinit var sendMail: SendEmailHelper
+
+    @Inject
+    lateinit var mPresenter: SendMessagePresenter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.message_layout, container, false)
-        return view
+        return inflater.inflate(R.layout.message_layout, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mPresenter = SendMessagePresenterImpl(this)
 
         send.setOnClickListener{
             mPresenter.sendButtonClicked()
@@ -46,12 +49,7 @@ class SendMessageFragment : DialogFragment(), SendMessageView{
     }
 
     override fun sendMessage(message: Message) {
-        sendMail = SendEmailHelper(
-            activity!!.applicationContext,
-            message.email,
-            message.subject,
-            message.body,
-            message.time)
+        sendMail.setMessage(message)
         sendMail.execute()
         dialog!!.dismiss()
     }

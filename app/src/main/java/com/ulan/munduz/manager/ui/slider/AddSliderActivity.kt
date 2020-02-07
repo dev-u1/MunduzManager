@@ -14,29 +14,25 @@ import com.ulan.munduz.manager.data.repository.Repository
 import com.ulan.munduz.manager.data.repository.RepositoryImpl
 import com.ulan.munduz.manager.data.repository.Storage
 import com.ulan.munduz.manager.data.repository.StorageImpl
+import com.ulan.munduz.manager.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.add_layout.*
 import kotlinx.android.synthetic.main.add_slider_layout.*
 import java.io.IOException
+import javax.inject.Inject
 
-class AddSliderActivity : AppCompatActivity(), AddSliderView {
+class AddSliderActivity : BaseActivity(), AddSliderView {
 
 
+    @Inject
     lateinit var mPresenter: AddSliderPresenter
-    lateinit var mStorage: Storage
-    lateinit var mRepository: Repository
     private var mFilePath: Uri? = null
     private var IMAGE_POSITION: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.add_slider_layout)
-
-        mStorage = StorageImpl(this)
-        mRepository = RepositoryImpl(this)
-        mPresenter = AddSliderPresenterImpl(this, mStorage, mRepository)
-
+        mPresenter.setToolbar()
         clickHandle()
-
     }
 
     private fun clickHandle(){

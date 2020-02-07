@@ -1,9 +1,9 @@
 package com.ulan.munduz.manager.data.repository
 
 import com.ulan.app.munduz.ui.Product
-import com.ulan.munduz.manager.adapter.listeners.OrdersListCallback
-import com.ulan.munduz.manager.adapter.listeners.ProductsListCallback
-import com.ulan.munduz.manager.data.model.SliderImage
+import com.ulan.munduz.manager.listeners.OrdersListCallback
+import com.ulan.munduz.manager.listeners.ProductsListCallback
+import com.ulan.munduz.manager.data.models.SliderImage
 
 interface Repository{
 

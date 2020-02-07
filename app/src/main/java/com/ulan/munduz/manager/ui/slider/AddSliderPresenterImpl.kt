@@ -1,10 +1,10 @@
 package com.ulan.munduz.manager.ui.slider
 
-import android.graphics.Bitmap
 import android.net.Uri
-import com.ulan.munduz.manager.data.model.SliderImage
+import com.ulan.munduz.manager.data.models.SliderImage
 import com.ulan.munduz.manager.data.repository.Repository
 import com.ulan.munduz.manager.data.repository.Storage
+import javax.inject.Inject
 
 class AddSliderPresenterImpl : AddSliderPresenter{
 
@@ -12,10 +12,15 @@ class AddSliderPresenterImpl : AddSliderPresenter{
     private var mStorage: Storage
     private var mRepository: Repository
 
-    constructor(mView: AddSliderView, mStorage: Storage, mRepository: Repository) {
+    @Inject
+    constructor(mView: AddSliderView, mRepository: Repository, mStorage: Storage) {
         this.mView = mView
-        this.mStorage = mStorage
         this.mRepository = mRepository
+        this.mStorage = mStorage
+    }
+
+    override fun setToolbar() {
+        mView?.showToolbar()
     }
 
     override fun setSliderImage(filePath: Uri?) {

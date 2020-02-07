@@ -1,4 +1,4 @@
-package com.ulan.munduz.manager.data.model
+package com.ulan.munduz.manager.data.models
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

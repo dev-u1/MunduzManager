@@ -5,13 +5,14 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.ulan.munduz.manager.R
 import com.ulan.munduz.manager.ui.add.AddProductActivity
+import com.ulan.munduz.manager.ui.base.BaseActivity
 import com.ulan.munduz.manager.ui.message.SendMessageFragment
 import com.ulan.munduz.manager.ui.orders.OrdersActivity
 import com.ulan.munduz.manager.ui.products.ProductsActivity
 import com.ulan.munduz.manager.ui.slider.AddSliderActivity
 import kotlinx.android.synthetic.main.main_activity.*
 
-class MainActivity: AppCompatActivity(), ManagerView {
+class MainActivity: BaseActivity(), MainView {
 
     private lateinit var mPresenter: MainPresenter
 

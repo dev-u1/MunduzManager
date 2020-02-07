@@ -1,7 +1,7 @@
 package com.ulan.munduz.manager.ui.orders
 
-import com.ulan.munduz.manager.adapter.listeners.OrdersListCallback
-import com.ulan.munduz.manager.data.model.Order
+import com.ulan.munduz.manager.listeners.OrdersListCallback
+import com.ulan.munduz.manager.data.models.Order
 import com.ulan.munduz.manager.data.repository.Repository
 
 class OrdersPresenterImpl: OrdersPresenter{

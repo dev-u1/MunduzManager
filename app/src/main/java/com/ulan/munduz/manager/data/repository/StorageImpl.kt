@@ -10,18 +10,25 @@ import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
 import com.ulan.app.munduz.helpers.*
 import com.ulan.app.munduz.data.models.Picture
-import com.ulan.munduz.manager.data.model.SliderImage
+import com.ulan.munduz.manager.data.models.SliderImage
 import java.util.*
+import javax.inject.Inject
 
-class StorageImpl(private val context: Context): Storage {
+class StorageImpl: Storage {
 
+    private var mContext: Context
     private val storage: FirebaseStorage = FirebaseStorage.getInstance()
     private val storageRef: StorageReference = storage.reference
     private var mSliderImage =  SliderImage()
 
+    @Inject
+    constructor(context: Context){
+        this.mContext = context
+    }
+
     override fun insertImage(filePath: Uri): Picture {
         var picture = Picture()
-        val progress = ProgressDialog(context)
+        val progress = ProgressDialog(mContext)
         progress.show()
         val random = Random()
         val randomInt = random.nextInt(10000) + 1
@@ -39,22 +46,22 @@ class StorageImpl(private val context: Context): Storage {
             .addOnSuccessListener {
             }
             .addOnFailureListener {
-                showErrorLoadingImage(context, it)
+                showErrorLoadingImage(mContext, it)
             }
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     picture.urlImage = task.result.toString()
                     progress.hide()
-                    showSuccessLoadingImage(context)
+                    showSuccessLoadingImage(mContext)
                 } else {
-                    showNotCompletedLoadingImage(context, task)
+                    showNotCompletedLoadingImage(mContext, task)
                 }
             }
         return picture
     }
 
     override fun insertSliderImage(filePath: Uri) {
-        val progress = ProgressDialog(context)
+        val progress = ProgressDialog(mContext)
         progress.show()
         val random = Random()
         val randomInt = random.nextInt(1000) + 1
@@ -72,15 +79,15 @@ class StorageImpl(private val context: Context): Storage {
             .addOnSuccessListener {
             }
             .addOnFailureListener {
-                showErrorLoadingImage(context, it)
+                showErrorLoadingImage(mContext, it)
             }
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     mSliderImage.image = task.result.toString()
                     progress.hide()
-                    showSuccessLoadingImage(context)
+                    showSuccessLoadingImage(mContext)
                 } else {
-                    showNotCompletedLoadingImage(context, task)
+                    showNotCompletedLoadingImage(mContext, task)
                 }
             }
     }
@@ -93,11 +100,11 @@ class StorageImpl(private val context: Context): Storage {
         val deletedFile = storageRef.child(picture.urlImage)
         deletedFile.delete().addOnSuccessListener(object : OnSuccessListener<Void> {
             override fun onSuccess(p0: Void?) {
-                showImageRemoved(context)
+                showImageRemoved(mContext)
             }
         }).addOnFailureListener(object : OnFailureListener {
             override fun onFailure(p0: Exception) {
-                showImageRemovedFailure(context)
+                showImageRemovedFailure(mContext)
             }
 
         })

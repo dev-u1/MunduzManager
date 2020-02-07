@@ -1,6 +1,6 @@
 package com.ulan.munduz.manager.ui.main
 
-interface ManagerView {
+interface MainView {
 
     fun initToolbar()
     fun showAddActivity()

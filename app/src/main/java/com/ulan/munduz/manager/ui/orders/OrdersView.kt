@@ -1,6 +1,6 @@
 package com.ulan.munduz.manager.ui.orders
 
-import com.ulan.munduz.manager.data.model.Order
+import com.ulan.munduz.manager.data.models.Order
 
 interface OrdersView {
 
