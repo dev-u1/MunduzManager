@@ -1,4 +1,4 @@
-package com.ulan.munduz.manager.di.scopes
+package com.ulan.munduz.manager.ui.orders
 
 import javax.inject.Scope
 

@@ -24,8 +24,18 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/products_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:visibility="gone">
     </androidx.recyclerview.widget.RecyclerView>
 
+
+    <ProgressBar
+        android:id="@+id/products_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:layout_marginTop="200dp"
+        android:layout_gravity="center"
+        android:visibility="visible"/>
 
 </LinearLayout>

@@ -1,12 +1,7 @@
-package com.ulan.munduz.manager.di.moduls.uimodules
+package com.ulan.munduz.manager.ui.products
 
-import com.ulan.munduz.manager.adapter.ProductsAdapter
+import com.ulan.munduz.manager.ui.adapter.ProductsAdapter
 import com.ulan.munduz.manager.listeners.OnItemClickListener
-import com.ulan.munduz.manager.di.scopes.ProductsScope
-import com.ulan.munduz.manager.ui.products.ProductsActivity
-import com.ulan.munduz.manager.ui.products.ProductsPresenter
-import com.ulan.munduz.manager.ui.products.ProductsPresenterImpl
-import com.ulan.munduz.manager.ui.products.ProductsView
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

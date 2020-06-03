@@ -1,4 +1,4 @@
-package com.ulan.munduz.manager.adapter
+package com.ulan.munduz.manager.ui.adapter
 
 import android.view.View
 import android.widget.TextView

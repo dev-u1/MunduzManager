@@ -1,4 +1,4 @@
-package com.ulan.munduz.manager.di.moduls
+package com.ulan.munduz.manager.di
 
 import android.content.Context
 import com.ulan.munduz.manager.MainApplication

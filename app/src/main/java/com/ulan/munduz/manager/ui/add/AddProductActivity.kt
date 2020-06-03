@@ -6,16 +6,13 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import androidx.appcompat.app.AppCompatActivity
-import com.ulan.app.munduz.ui.Product
+import com.ulan.app.munduz.data.models.Picture
 import com.ulan.app.munduz.helpers.Constants.Companion.PICK_IMAGE_REQUEST
 import com.ulan.app.munduz.helpers.showEditTextEmpty
 import com.ulan.app.munduz.helpers.showEmptyDrawable
-import com.ulan.app.munduz.data.models.Picture
 import com.ulan.app.munduz.helpers.showSuccessProductAdded
+import com.ulan.app.munduz.ui.Product
 import com.ulan.munduz.manager.R
-import com.ulan.munduz.manager.data.repository.RepositoryImpl
-import com.ulan.munduz.manager.data.repository.StorageImpl
 import com.ulan.munduz.manager.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.add_layout.*
 import java.io.IOException
@@ -58,7 +55,7 @@ class AddProductActivity : BaseActivity(),
 
     override fun checkForNull() {
         if (product_name.text.toString() == "" || product_desc.text.toString() == "" ||
-            product_cost.text.toString() == "" || product_amount.text.toString() == "") {
+            product_cost.text.toString() == "" || product_price_for.text.toString() == "") {
             showEditTextEmpty(this)
             return
         }
@@ -80,7 +77,7 @@ class AddProductActivity : BaseActivity(),
         product.date = System.currentTimeMillis()
         product.category = product_category.selectedItem.toString()
         product.isVisible = true
-        product.amount = getAmountProducts()
+        product.priceFor = product_price_for.text.toString()
         product.name = product_name.text.toString()
         product.desc = product_desc.text.toString()
         product.cost = Integer.parseInt(product_cost.text.toString())
@@ -88,16 +85,11 @@ class AddProductActivity : BaseActivity(),
         return product
     }
 
-    private fun getAmountProducts(): Int{
-        val result = product_amount.text.toString()
-        return result.toInt()
-    }
-
     override fun clearFields() {
         product_name.text.clear()
         product_desc.text.clear()
         product_cost.text.clear()
-        product_amount.text.clear()
+        product_price_for.text.clear()
         product_image.setImageResource(android.R.color.transparent)
         showSuccessProductAdded(this)
     }

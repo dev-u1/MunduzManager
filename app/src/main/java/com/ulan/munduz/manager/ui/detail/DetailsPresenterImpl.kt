@@ -1,6 +1,7 @@
 package com.ulan.munduz.manager.ui.detail
 
 import android.net.Uri
+import android.util.Log
 import com.ulan.app.munduz.ui.Product
 import com.ulan.app.munduz.data.models.Picture
 import com.ulan.munduz.manager.data.repository.Repository
@@ -37,16 +38,13 @@ class DetailsPresenterImpl : DetailsPresenter{
     }
 
     override fun setToolbar() {
-        mView?.initToolbar("Details")
+        mView?.initToolbar("О Продукте")
     }
 
     override fun showProduct(product: Product) {
         mView?.setProduct(product)
     }
 
-    override fun setDialog() {
-        mView?.showDialog()
-    }
 
     override fun getPictureUrl(filePath: Uri?): Picture {
         return mStorage.insertImage(filePath!!)

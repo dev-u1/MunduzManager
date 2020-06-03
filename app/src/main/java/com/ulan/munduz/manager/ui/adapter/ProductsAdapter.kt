@@ -1,4 +1,4 @@
-package com.ulan.munduz.manager.adapter
+package com.ulan.munduz.manager.ui.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -29,6 +29,7 @@ class ProductsAdapter: RecyclerView.Adapter<ProductsHolder>, Filterable {
     fun setProducts(products: ArrayList<Product>){
         this.products = products
         this.filteredProducts = products
+        this.filteredProducts.distinct()
     }
     
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : ProductsHolder {
@@ -73,6 +74,7 @@ class ProductsAdapter: RecyclerView.Adapter<ProductsHolder>, Filterable {
             }
 
             override fun publishResults(p0: CharSequence?, p1: FilterResults?) {
+                filteredProducts = p1!!.values as ArrayList<Product>
                 notifyDataSetChanged()
             }
         }

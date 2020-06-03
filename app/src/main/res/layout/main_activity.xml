@@ -39,7 +39,8 @@
         android:layout_margin="12dp"
         android:background="?android:selectableItemBackground"
         android:text="Добавить фото для слайдера"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:visibility="gone"/>
 
     <Button
         android:id="@+id/call_manage_product"
@@ -48,7 +49,8 @@
         android:layout_margin="12dp"
         android:background="?android:selectableItemBackground"
         android:text="Управление товарами"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        />
 
     <Button
         android:id="@+id/call_orders_products"
@@ -57,7 +59,8 @@
         android:layout_margin="12dp"
         android:background="?android:selectableItemBackground"
         android:text="Заказы товаров"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:visibility="gone"/>
 
     <Button
         android:id="@+id/call_message_fragment"

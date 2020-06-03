@@ -1,4 +1,4 @@
-package com.ulan.munduz.manager.adapter
+package com.ulan.munduz.manager.ui.adapter
 
 import android.content.Context
 import android.view.LayoutInflater

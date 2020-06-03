@@ -5,6 +5,6 @@ import com.ulan.app.munduz.ui.Product
 interface ProductsPresenter {
 
     fun setToolbarTitle()
-    fun loadProducts() : ArrayList<Product>
+    fun loadProducts()
     fun detachView()
 }

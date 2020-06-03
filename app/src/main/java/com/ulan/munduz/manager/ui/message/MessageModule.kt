@@ -1,12 +1,8 @@
-package com.ulan.munduz.manager.di.moduls.uimodules
+package com.ulan.munduz.manager.ui.message
 
 import android.content.Context
 import com.ulan.app.munduz.helpers.SendEmailHelper
-import com.ulan.munduz.manager.di.scopes.MainScope
-import com.ulan.munduz.manager.ui.message.SendMessageFragment
-import com.ulan.munduz.manager.ui.message.SendMessagePresenter
-import com.ulan.munduz.manager.ui.message.SendMessagePresenterImpl
-import com.ulan.munduz.manager.ui.message.SendMessageView
+import com.ulan.munduz.manager.ui.main.MainScope
 import dagger.Module
 import dagger.Provides
 

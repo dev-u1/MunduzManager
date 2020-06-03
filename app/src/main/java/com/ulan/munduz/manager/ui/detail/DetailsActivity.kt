@@ -1,14 +1,12 @@
 package com.ulan.munduz.manager.ui.detail
 
 import android.app.Activity
-import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.ArrayAdapter
-import androidx.appcompat.app.AppCompatActivity
 import com.squareup.picasso.Picasso
 import com.ulan.app.munduz.data.models.Picture
 import com.ulan.app.munduz.helpers.Constants.Companion.PICK_IMAGE_REQUEST
@@ -16,20 +14,9 @@ import com.ulan.app.munduz.helpers.Constants.Companion.PRODUCTS_DATA
 import com.ulan.app.munduz.helpers.showEditTextEmpty
 import com.ulan.app.munduz.helpers.showEmptyDrawable
 import com.ulan.app.munduz.helpers.showProductUpdated
-import com.ulan.app.munduz.helpers.showSuccessDeleted
 import com.ulan.app.munduz.ui.Product
 import com.ulan.munduz.manager.R
-import com.ulan.munduz.manager.data.repository.RepositoryImpl
-import com.ulan.munduz.manager.data.repository.StorageImpl
 import com.ulan.munduz.manager.ui.base.BaseActivity
-import com.ulan.munduz.manager.ui.products.ProductsActivity
-import kotlinx.android.synthetic.main.add_layout.choose_product_image
-import kotlinx.android.synthetic.main.add_layout.product_amount
-import kotlinx.android.synthetic.main.add_layout.product_category
-import kotlinx.android.synthetic.main.add_layout.product_cost
-import kotlinx.android.synthetic.main.add_layout.product_desc
-import kotlinx.android.synthetic.main.add_layout.product_image
-import kotlinx.android.synthetic.main.add_layout.product_name
 import kotlinx.android.synthetic.main.details_layout.*
 import java.io.IOException
 import javax.inject.Inject
@@ -61,10 +48,6 @@ class DetailsActivity : BaseActivity(), DetailsView {
             showProductUpdated(this)
         }
 
-        delete_product.setOnClickListener {
-            mPresenter.setDialog()
-        }
-
         choose_product_image.setOnClickListener {
             mPresenter.chooseImageButtonClicked()
         }
@@ -72,30 +55,12 @@ class DetailsActivity : BaseActivity(), DetailsView {
 
     override fun initToolbar(title: String) {
         setSupportActionBar(details_toolbar)
-        supportActionBar?.title = "О Продукте"
+        supportActionBar?.title = title
         details_toolbar.setNavigationIcon(R.drawable.ic_arrow_back_black_24dp)
         details_toolbar.setNavigationOnClickListener {
             finish()
         }
 
-    }
-
-    override fun showDialog(){
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Удаление продукта")
-        builder.setMessage("Вы хотите удалить продукт?")
-        builder.setPositiveButton("Да"){ dialogInterface, i ->
-            mPresenter.deleteButtonClicked(mProduct)
-            showSuccessDeleted(this)
-            dialogInterface.cancel()
-            val intent = Intent(this, ProductsActivity::class.java)
-            startActivity(intent)
-        }
-        builder.setNegativeButton("Нет"){ dialogInterface, i ->
-            dialogInterface.cancel()
-        }
-        val dialog = builder.create()
-        dialog.show()
     }
 
     override fun setCategories(categories: MutableList<String>) {
@@ -114,7 +79,9 @@ class DetailsActivity : BaseActivity(), DetailsView {
         product_name.setText(product.name)
         product_desc.setText(product.desc)
         product_cost.setText(product.cost.toString())
+        product_priceFor.setText(product.priceFor)
         product_visibility.isChecked = product.isVisible
+        product_recommend.isChecked = product.recommend
         oldPicture = product.picture
         Picasso.get().load(product.picture.urlImage).into(product_image)
     }
@@ -125,8 +92,10 @@ class DetailsActivity : BaseActivity(), DetailsView {
         product.date = System.currentTimeMillis()
         product.category = product_category.selectedItem.toString()
         product.isVisible = product_visibility.isChecked
+        product.recommend = product_recommend.isChecked
+        product.name = product_name.text.toString()
         product.desc = product_desc.text.toString()
-        product.amount = product_amount.text.toString().toInt()
+        product.priceFor = product_priceFor.text.toString()
         product.cost = Integer.parseInt(product_cost.text.toString())
         product.picture = if(filePath != null) newPicture else oldPicture
         return product
@@ -171,5 +140,10 @@ class DetailsActivity : BaseActivity(), DetailsView {
             }
         }
 
+    }
+
+    override fun onStop() {
+        super.onStop()
+        mPresenter.detachView()
     }
 }

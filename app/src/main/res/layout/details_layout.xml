@@ -1,29 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/details_toolbar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:background="@color/colorPrimary"
-        android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
-        app:contentInsetEnd="0dp"
-        app:contentInsetEndWithActions="0dp"
-        app:contentInsetLeft="0dp"
-        app:contentInsetRight="0dp"
-        app:contentInsetStart="0dp"
-        app:contentInsetStartWithNavigation="0dp"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:titleTextColor="@color/white">
-    </androidx.appcompat.widget.Toolbar>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/details_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@color/colorPrimary"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+            app:contentInsetEnd="0dp"
+            app:contentInsetEndWithActions="0dp"
+            app:contentInsetLeft="0dp"
+            app:contentInsetRight="0dp"
+            app:contentInsetStart="0dp"
+            app:contentInsetStartWithNavigation="0dp"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:titleTextColor="@color/white"></androidx.appcompat.widget.Toolbar>
 
 
-    <!-- Category of product -->
-    <TextView
+        <!-- Category of product -->
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="7dp"
@@ -31,7 +34,7 @@
             android:text="@string/category"
             android:textSize="14sp" />
 
-    <Spinner
+        <Spinner
             android:id="@+id/product_category"
             android:layout_width="match_parent"
             android:layout_height="30dp"
@@ -41,15 +44,15 @@
             android:textSize="16sp" />
 
 
-    <!-- Name of product -->
-    <TextView
+        <!-- Name of product -->
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="7dp"
             android:text="@string/product_name"
             android:textSize="15sp" />
 
-    <EditText
+        <EditText
             android:id="@+id/product_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -61,35 +64,33 @@
             android:textSize="16sp" />
 
 
-    <!-- Description of product -->
-    <TextView
+        <!-- Description of product -->
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="7dp"
             android:text="@string/product_desc"
             android:textSize="15sp" />
 
-    <EditText
+        <EditText
             android:id="@+id/product_desc"
             android:layout_width="match_parent"
             android:layout_height="90dp"
             android:layout_marginLeft="7dp"
             android:layout_marginBottom="4dp"
             android:inputType="textMultiLine"
-            android:maxLength="220"
-            android:maxLines="4"
             android:textSize="16sp" />
 
 
-    <!-- Cost of product -->
-    <TextView
+        <!-- Cost of product -->
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="7dp"
             android:text="@string/product_cost"
             android:textSize="15sp" />
 
-    <EditText
+        <EditText
             android:id="@+id/product_cost"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -101,54 +102,63 @@
             android:textSize="16sp" />
 
 
-    <!-- Visibility of product -->
-    <Switch
+        <!-- Visibility of product -->
+        <Switch
             android:id="@+id/product_visibility"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:text="@string/product_visibility"
-            android:textSize="15sp"/>
+            android:textSize="15sp" />
 
-    <!-- Quantity of product -->
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        <!-- Recommend of product -->
+        <Switch
+            android:id="@+id/product_recommend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@string/recommend"
+            android:textSize="15sp" />
 
+        <!-- Price for product -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="4dp"
+                android:text="Цена за "
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/product_priceFor"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:maxLength="10" />
+
+        </RelativeLayout>
+
+
+        <!-- Image of product-->
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Количество продукта"
-            android:layout_alignParentLeft="true"
-            android:textSize="15sp"
-            android:layout_marginLeft="7dp"
-            android:layout_marginBottom="4dp"/>
-
-        <EditText
-            android:id="@+id/product_amount"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:maxLength="10"
-            android:layout_alignParentRight="true"/>
-
-    </RelativeLayout>
-
-
-
-    <!-- Image of product-->
-    <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="7dp"
             android:text="@string/product_image"
             android:textSize="15sp" />
 
-    <LinearLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <ImageButton
+            <ImageButton
                 android:id="@+id/choose_product_image"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
@@ -157,42 +167,27 @@
                 android:layout_marginBottom="4dp"
                 android:src="@drawable/ic_add_a_photo_gray_24dp" />
 
-        <ImageView
+            <ImageView
                 android:id="@+id/product_image"
-                android:layout_width="65dp"
-                android:layout_height="65dp"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginBottom="4dp"
                 android:background="@color/white"
                 android:clickable="true" />
+        </LinearLayout>
+
     </LinearLayout>
 
-    <!-- Buttons -->
-    <LinearLayout
+    <!-- Button -->
+        <Button
+            android:id="@+id/update_product"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-        <Button
-                android:id="@+id/update_product"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_margin="7dp"
-                android:textSize="13sp"
-                android:layout_weight="1"
-                android:text="Обновить"/>
-
-        <Button
-                android:id="@+id/delete_product"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_margin="7dp"
-                android:textSize="13sp"
-                android:layout_weight="1"
-                android:text="Удалить"/>
-
-
-    </LinearLayout>
-
-
-</LinearLayout>
+            android:background="@color/colorPrimary"
+            android:layout_margin="7dp"
+            android:layout_weight="1"
+            android:text="Обновить"
+            android:layout_alignParentBottom="true"
+            android:textSize="16sp" />
+</RelativeLayout>

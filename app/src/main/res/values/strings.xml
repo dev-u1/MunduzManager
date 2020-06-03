@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Munduz-Manager</string>
+    <string name="app_name">Munduz Admin</string>
     <string name="home">Главная</string>
     <string name="catalog">Каталог</string>
     <string name="basket">Корзина</string>
@@ -30,13 +30,17 @@
     <string name="add_product">Добавить товар</string>
     <string name="update_product">Обновить товар</string>
     <string name="remove_product">Удалить товар</string>
+    <string name="recommend">Рекомендуем</string>
 
     <array name="category">
         <item>Продукты</item>
-        <item>Посуда</item>
-        <item>Для дома</item>
+        <item>Напитки</item>
+        <item>Матрасы/Одеяло</item>
+        <item>Кухня</item>
+        <item>Казаны</item>
+        <item>Чемоданы</item>
+        <item>Мебель/Бешик</item>
         <item>Одежда</item>
-        <item>Книги</item>
-
+        <item>Химия</item>
     </array>
 </resources>

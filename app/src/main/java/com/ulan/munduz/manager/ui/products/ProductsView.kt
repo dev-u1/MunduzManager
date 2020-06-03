@@ -7,4 +7,5 @@ interface ProductsView {
     fun setToolbar(title: String)
     fun showProducts(products: ArrayList<Product>)
     fun showNoProducts(message: String)
+    fun hideProgressBar()
 }

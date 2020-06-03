@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,7 +12,7 @@ import com.ulan.app.munduz.helpers.Constants.Companion.PRODUCTS_DATA
 import com.ulan.app.munduz.helpers.showEmptyFields
 import com.ulan.app.munduz.ui.Product
 import com.ulan.munduz.manager.R
-import com.ulan.munduz.manager.adapter.ProductsAdapter
+import com.ulan.munduz.manager.ui.adapter.ProductsAdapter
 import com.ulan.munduz.manager.listeners.OnItemClickListener
 import com.ulan.munduz.manager.ui.base.BaseActivity
 import com.ulan.munduz.manager.ui.detail.DetailsActivity
@@ -21,8 +22,6 @@ import javax.inject.Inject
 class ProductsActivity : BaseActivity(),
     OnItemClickListener, SearchView.OnQueryTextListener, MenuItem.OnActionExpandListener,
     ProductsView {
-
-    private lateinit var mProducts: MutableList<Product>
     private lateinit var searchView : SearchView
 
     @Inject
@@ -48,17 +47,21 @@ class ProductsActivity : BaseActivity(),
         }
     }
 
-    override fun showProducts(products: git) {
-        mProducts = products
+    override fun showProducts(products: ArrayList<Product>) {
         val layoutManager = LinearLayoutManager(this)
         products_recycler_view.layoutManager = layoutManager
         products_recycler_view.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
-        mAdapter?.setProducts(products)
+        mAdapter.setProducts(products)
         products_recycler_view.adapter = mAdapter
     }
 
     override fun showNoProducts(message: String) {
         showEmptyFields(this)
+    }
+
+    override fun hideProgressBar() {
+        products_recycler_view.visibility = View.VISIBLE
+        products_progress.visibility = View.GONE
     }
 
     override fun onItemClick(product: Product?) {
@@ -77,12 +80,12 @@ class ProductsActivity : BaseActivity(),
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
-        mAdapter!!.filter.filter(query)
+        mAdapter.filter.filter(query)
         return false
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
-        mAdapter!!.filter.filter(newText)
+        mAdapter.filter.filter(newText)
         return true
     }
 
@@ -96,9 +99,12 @@ class ProductsActivity : BaseActivity(),
 
     override fun onResume() {
         super.onResume()
-        if(mAdapter != null){
-            mAdapter!!.notifyDataSetChanged()
-        }
+        mAdapter.notifyDataSetChanged()
     }
 
+    override fun onStop() {
+        super.onStop()
+        mPresenter.detachView()
+
+    }
 }

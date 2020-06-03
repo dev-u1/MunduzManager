@@ -17,16 +17,14 @@ class ProductsPresenterImpl :
         this.mRepository = repository
     }
 
-    override fun loadProducts() : ArrayList<Product>{
-        var products = ArrayList<Product>()
+    override fun loadProducts(){
         mRepository.getProducts(object :
             ProductsListCallback{
             override fun onCallback(value: ArrayList<Product>) {
+                mView?.hideProgressBar()
                 mView?.showProducts(value)
-                products = value
             }
         })
-        return products
     }
 
     override fun setToolbarTitle() {

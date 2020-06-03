@@ -10,7 +10,6 @@ interface DetailsPresenter {
     fun initCategory()
     fun setToolbar()
     fun showProduct(product: Product)
-    fun setDialog()
     fun getPictureUrl(filePath: Uri?): Picture
     fun updateButtonClicked()
     fun deleteButtonClicked(product: Product)

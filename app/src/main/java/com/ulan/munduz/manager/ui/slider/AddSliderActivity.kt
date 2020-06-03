@@ -22,9 +22,9 @@ import javax.inject.Inject
 
 class AddSliderActivity : BaseActivity(), AddSliderView {
 
-
     @Inject
     lateinit var mPresenter: AddSliderPresenter
+
     private var mFilePath: Uri? = null
     private var IMAGE_POSITION: Int = 0
 

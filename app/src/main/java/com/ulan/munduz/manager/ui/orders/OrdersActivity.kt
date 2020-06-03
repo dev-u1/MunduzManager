@@ -2,13 +2,10 @@ package com.ulan.munduz.manager.ui.orders
 
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ulan.munduz.manager.R
-import com.ulan.munduz.manager.adapter.OrdersAdapter
+import com.ulan.munduz.manager.ui.adapter.OrdersAdapter
 import com.ulan.munduz.manager.data.models.Order
-import com.ulan.munduz.manager.data.repository.Repository
-import com.ulan.munduz.manager.data.repository.RepositoryImpl
 import com.ulan.munduz.manager.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.orders_layout.*
 import javax.inject.Inject

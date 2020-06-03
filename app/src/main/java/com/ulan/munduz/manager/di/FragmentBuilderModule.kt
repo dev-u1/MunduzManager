@@ -1,7 +1,7 @@
-package com.ulan.munduz.manager.di.moduls.builders
+package com.ulan.munduz.manager.di
 
-import com.ulan.munduz.manager.di.moduls.uimodules.MessageModule
-import com.ulan.munduz.manager.di.scopes.MainScope
+import com.ulan.munduz.manager.ui.message.MessageModule
+import com.ulan.munduz.manager.ui.main.MainScope
 import com.ulan.munduz.manager.ui.message.SendMessageFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector

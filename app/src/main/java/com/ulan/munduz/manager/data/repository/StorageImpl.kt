@@ -1,6 +1,5 @@
 package com.ulan.munduz.manager.data.repository
 
-import android.app.ProgressDialog
 import android.content.Context
 import android.net.Uri
 import com.google.android.gms.tasks.OnFailureListener
@@ -8,8 +7,8 @@ import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
-import com.ulan.app.munduz.helpers.*
 import com.ulan.app.munduz.data.models.Picture
+import com.ulan.app.munduz.helpers.*
 import com.ulan.munduz.manager.data.models.SliderImage
 import java.util.*
 import javax.inject.Inject
@@ -28,8 +27,6 @@ class StorageImpl: Storage {
 
     override fun insertImage(filePath: Uri): Picture {
         var picture = Picture()
-        val progress = ProgressDialog(mContext)
-        progress.show()
         val random = Random()
         val randomInt = random.nextInt(10000) + 1
         val storageRef: StorageReference = storageRef.child("images/$randomInt")
@@ -51,7 +48,6 @@ class StorageImpl: Storage {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     picture.urlImage = task.result.toString()
-                    progress.hide()
                     showSuccessLoadingImage(mContext)
                 } else {
                     showNotCompletedLoadingImage(mContext, task)
@@ -61,8 +57,6 @@ class StorageImpl: Storage {
     }
 
     override fun insertSliderImage(filePath: Uri) {
-        val progress = ProgressDialog(mContext)
-        progress.show()
         val random = Random()
         val randomInt = random.nextInt(1000) + 1
         val storageRef: StorageReference = storageRef.child("sliderImages/$randomInt")
@@ -84,7 +78,6 @@ class StorageImpl: Storage {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     mSliderImage.image = task.result.toString()
-                    progress.hide()
                     showSuccessLoadingImage(mContext)
                 } else {
                     showNotCompletedLoadingImage(mContext, task)
