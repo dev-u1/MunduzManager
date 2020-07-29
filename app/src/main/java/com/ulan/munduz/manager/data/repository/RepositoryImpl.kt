@@ -46,7 +46,7 @@ class RepositoryImpl : Repository {
 
     override fun getProducts(callback: ProductsListCallback){
         val products = ArrayList<Product>()
-        ref.child(PRODUCTS_DATA).addValueEventListener(object : ValueEventListener {
+        ref.child(PRODUCTS_DATA).orderByChild("date").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
                 products.clear()
                 for (item: DataSnapshot in p0.children) {
